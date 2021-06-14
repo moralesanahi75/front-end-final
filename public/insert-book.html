@@ -55,6 +55,64 @@
     </nav>
 </header>
 
+<!-- ADD INFORMATION FOR BOOK -->
+<div class="container">
+    <h1>Add Book</h1>
+    <div class="container">
+        <form method="POST"
+              action="https://arias-spu-students.herokuapp.com/api/students/">
+            <h2>Please provide  Book  information</h2>
+            <div class="mb-3 form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" class="form-control"
+                       placeholder="Book title">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="author">Author:</label>
+                <input type="text" name="author" id="author" class="form-control"
+                       placeholder="Author">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="year">Year:</label>
+                <input type="year" step="0.001" name="year" id="year" class="form-control"
+                       placeholder="Year">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="price">Price:</label>
+                <input type="price" name="price" id="price" class="form-control"
+                       placeholder="Price">
+            </div>
+
+            <!-- radiobutton for hardcover from bootstrap -->
+            <div class="form-check">
+                <h2>Is this book a hardcover?</h2>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    No
+                </label>
+            </div>
+
+
+
+
+            <div class="mb-3 form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <button class="btn btn-lg btn-outline-primary" id="btnAddFriend">Add Friend</button>
+    </div>
+    <div class="jumbotron" id="output">
+
+    </div>
+</div>
 
 <link href="../stylesheets/background.css"
       rel="stylesheet">

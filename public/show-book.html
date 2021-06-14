@@ -53,7 +53,47 @@
         </ul>
     </nav>
 </header>
+<div class="container">
+    <h1>Show Book list </h1>
+    <button class="btn-primary btn-lg" id="btnLoadFriends">Load Books</button>
+    <a href="insert-book.html" class="btn-lg">Add a Book</a>
+    <div class="jumbotron" id="output">
 
+    </div>
+</div>
+<script>
+    function CreateTable(data){
+        let table = "";
+        table =
+            '<table class="table table-bordered table-hover"> \n' +
+            '   <thead>\n' +
+            '       <tr>\n' +
+            '           <th scope="col">First Name</th> \n'+
+            '           <th scope="col">Last Name</th> \n'+
+            '           <th scope="col">GPA</th> \n'+
+            '           <th scope="col">Credits</th> \n'+
+            '           <th scope="col">Major</th> \n'+
+            '       </tr>\n' +
+            '   </thead>\n' +
+            '   <tbody>\n';
+
+        for (let student in data){
+            table +=
+                '       <tr>\n' +
+                '           <td>' + data[student]["firstName"]+  '</td>\n' +
+                '           <td>' + data[student]["lastName"]+  '</td>\n' +
+                '           <td>' + data[student]["gpa"]+  '</td>\n' +
+                '           <td>' + data[student]["credits"]+  '</td>\n' +
+                '           <td>' + data[student]["major"]+  '</td>\n' +
+                '       </tr>\n';
+        }
+
+        table +=
+            '   </tbody>\n' +
+            '</table>\n'
+        return table;
+    }
+</script>
 
 
 
