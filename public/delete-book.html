@@ -60,16 +60,81 @@
 
 <!-- look for a specific book to delete -->
 
-<div class="mb-3 form-group">
-    <label for="title"> Search Title:</label>
-    <input type="text" name="title" id="title" class="form-control"
-           placeholder="Book title">
+<div  class="container">
+    <h1>Delete Book</h1>
+    <form method="delete" action="https://ancient-shelf-42163.herokuapp.com/api/books">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" class="form-control" placeholder="Title">
+        </div>
+    </form>
+    <br>
+    <br>
+    <button class = "btn btn-lg btn-outline-primary" id="deleteTitle">Delete book</button>
+    <div class="jumbotron" id="deleteOutput">
+    </div>
 </div>
+<script>
+    function CreateTable(data){
+        let table = "";
+        table =
+            '<table class="table table-bordered table-hover"> \n' +
+            '   <thead>\n' +
+            '       <tr>\n' +
+            '           <th scope="col">Title</th> \n'+
+            '           <th scope="col">Description</th> \n'+
+            '           <th scope="col">Year</th> \n'+
+            '           <th scope="col">Author</th> \n'+
+            '           <th scope="col">Hardcover</th> \n'+
+            '           <th scope="col">Price</th> \n'+
+            '       </tr>\n' +
+            '   </thead>\n' +
+            '   <tbody>\n';
 
-<div class="mb-3 form-group">
-    <input type="submit" value="Delete ">
-</div>
+        for (let book in data){
+            table +=
+                '       <tr>\n' +
+                '           <td>' + data[book]["title"]+  '</td>\n' +
+                '           <td>' + data[book]["description"]+  '</td>\n' +
+                '           <td>' + data[book]["year"]+  '</td>\n' +
+                '           <td>' + data[book]["author"]+  '</td>\n' +
+                '           <td>' + data[book]["hardcover"]+  '</td>\n' +
+                '           <td>' + data[book]["price"]+  '</td>\n' +
+                '       </tr>\n';
+        }
 
+        table +=
+            '   </tbody>\n' +
+            '</table>\n'
+        return table;
+    }
+    document.getElementById("btnLoadBook").addEventListener("click", (event) =>{
+        let url = "https://ancient-shelf-42163.herokuapp.com/api/books?title=" + document.getElementById("title").value
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("output").innerHTML =
+                    CreateTable(JSON.parse(this.responseText));
+            }else if (this.status == 404) {
+                document.getElementById("output").innerHTML = "<p>Not found</p>"
+            }
+        };
+        xhttp.open('GET', url, true);
+        xhttp.send();
+    });
+
+    document.getElementById("deleteTitle").addEventListener("click", (event) =>{
+        let url = "https://ancient-shelf-42163.herokuapp.com/api/books?title=" + document.getElementById("title").value
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("deleteOutput").innerHTML = "<p>deleted succesfully.</p>"
+            }
+        };
+        xhttp.open('DELETE', url, true);
+        xhttp.send();
+    });
+</script>
 
 
 

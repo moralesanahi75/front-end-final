@@ -121,6 +121,52 @@
     </div>
 </div>
 
+<script>
+    document.getElementById("changeTitle").addEventListener("click", (event) =>{
+        let url = "https://warm-taiga-87942.herokuapp.com/api/books/" + document.getElementById("title").value
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("output").innerHTML =
+                    "<pre>" + this.responseText + "</pre>";
+            }
+        };
+        // foo=bar&lorem=ipsum
+        let bookData = "Title=" + document.getElementById("title").value + "&" +
+            "Description=" + document.getElementById("description").value + "&" +
+            "Year=" + document.getElementById("year").value + "&" +
+            "Author=" + document.getElementById("author").value  + "&" +
+            "Hardcover="  + document.getElementById("hardcover").checked  + "&" +
+            "Price="  + document.getElementById("price").value;
+        xhttp.open('PATCH', url, true);
+        // Just needed to place this line AFTER opening the object
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(bookData);
+    });
+</script>
+<script>
+    document.getElementById("changeTitle").addEventListener("click", (event) =>{
+        let url = "https://ancient-shelf-42163.herokuapp.com/api/books/" + document.getElementById("title").value
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("output").innerHTML =
+                    "<pre>" + this.responseText + "</pre>";
+            }
+        };
+        // foo=bar&lorem=ipsum
+        let bookData = "Title=" + document.getElementById("title").value + "&" +
+            "Description=" + document.getElementById("description").value + "&" +
+            "Year=" + document.getElementById("year").value + "&" +
+            "Author=" + document.getElementById("author").value  + "&" +
+            "Hardcover="  + document.getElementById("hardcover").checked  + "&" +
+            "Price="  + document.getElementById("price").value;
+        xhttp.open('PATCH', url, true);
+        // place this line AFTER opening the object
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(bookData);
+    });
+</script>
 
 <link href="../stylesheets/background.css"
       rel="stylesheet">
